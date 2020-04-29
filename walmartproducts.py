@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 
 class Walmart:
     def __init__(self):
+
         self.productList = ['https://www.walmart.com/ip/Lysol-Disinfectant-Spray-Crisp-Linen-38oz-2X19oz-Cleaner/51222388',
                             'https://www.walmart.com/ip/Lysol-Disinfectant-Spray-Crisp-Linen-25oz-2X12-5oz-Cleaner/37241006',
                             'https://www.walmart.com/ip/Lysol-Disinfectant-Spray-Lemon-Breeze-19oz-Cleaner/22395165',
@@ -45,19 +46,15 @@ class Walmart:
                             'https://www.walmart.com/ip/Great-Value-All-Purpose-Cleaner-with-Bleach-64-fl-oz/43888099',
 
                             ]
+
+
+        #self.productList = ['https://www.walmart.com/ip/Lysol-Kitchen-Pro-Antibacterial-Disinfecting-Wipes-30ct-Kills-Germs/146817584']
         self.baseurl = ''
         self.numberOfMinutes = 1
         self.arr = ['Add to cart']
         self.title = ""
 
     def readWalmart(self):
-        # Asin Id is the product Id which
-        # needs to be provided by the user
-        # Asin = 'B0002LCZ6O'
-        # get products
-
-        # Asin = 'B07G8PW5Y3'
-        # url = "http://www.amazon.com/dp/" + Asin
         for i in self.productList:
             url = self.baseurl + i;
             print("Processing: " + i)
@@ -91,11 +88,25 @@ class Walmart:
             "Loading took too much time!"
         #driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.implicitly_wait(3)
-        shipbutton_element = driver.find_elements_by_xpath(shipbutton_xpath)
-        self.title = driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div/div/div/div[3]/div[5]/div/div[3]/div/h1').text
-        for value in shipbutton_element:
-            print(value.text)
-            shipbutton = value.text if shipbutton_element else None
+        try:
+            shipbutton_element = driver.find_elements_by_xpath(shipbutton_xpath)
+            for value in shipbutton_element:
+                print(value.text)
+                shipbutton = value.text if shipbutton_element else None
+
+            if shipbutton == '':
+                shipbutton = 'Ship Button Text not found on page'
+        except:
+            shipbutton = "Error loading page"
+
+        try:
+            self.title = driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div/div/div/div[3]/div[5]/div/div[3]/div/h1').text
+            if self.title == '':
+                self.title = "Title not found on page"
+
+        except:
+            self.title = "Page not loaded"
+
 
         print("Here is the ship button text: " + shipbutton)
 
