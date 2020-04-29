@@ -76,23 +76,6 @@ class Target:
             shipbutton = value.text if shipbutton_element else None
         #shipbutton = shipbutton_element[0].text if shipbutton_element else None
 
-        '''
-        # create the amazon class
-        target = GetPageInfo(url);
-        # call get the url content in document
-        doc = target.getUrlInfo()
-
-
-        # check the availaility
-        XPATH_AVAILABILITY = '//div[@id ="availability"]//text()'
-        RAw_AVAILABILITY = doc.xpath(XPATH_AVAILABILITY)
-        AVAILABILITY = ''.join(RAw_AVAILABILITY).strip() if RAw_AVAILABILITY else None
-
-        title_xpath = '//*[@id="productTitle"]//text()'
-
-        TITLE = doc.xpath(title_xpath)
-        self.title = TITLE if TITLE else None
-        '''
         print("Here is the ship button text: " + shipbutton)
 
         #close the browser

@@ -3,6 +3,7 @@
 # importing libraries
 
 from targetproducts import Target
+from walmartproducts import Walmart
 
 import time
 import schedule
@@ -14,8 +15,10 @@ def job():
     #az = Amazon()
     #az.readAmazon()
 
-    az = Target()
-    az.readTarget()
+    target = Target()
+    target.readTarget()
+    walmart = Walmart()
+    walmart.readWalmart()
 
 job()
 schedule.every(15).minutes.do(job)
