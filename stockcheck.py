@@ -24,7 +24,7 @@ def job():
     if config.TARGET:
         target = Target()
         target.readTarget()
-    if config.WALMART():
+    if config.WALMART:
         walmart = Walmart()
         walmart.readWalmart()
     if config.BJS:

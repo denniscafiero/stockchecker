@@ -1,4 +1,4 @@
-#!C:\Python34 python
+
 
 from sendmail import SendMail
 
