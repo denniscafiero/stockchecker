@@ -37,7 +37,13 @@ class Walmart:
                             'https://www.walmart.com/ip/Lysol-Disinfecting-Wipes-2-Lemon-Lime-1-Mango-Hibiscus-105ct-3X35ct-Brand-New-Day/854887879',
                             'https://www.walmart.com/ip/Lysol-Kitchen-Pro-Antibacterial-Disinfecting-Wipes-30ct-Kills-Germs/146817584',
                             'https://www.walmart.com/ip/Lysol-All-Purpose-Cleaner-Spray-Lemon-Breeze-Kills-Germs-2X32oz/483952655',
-                            'https://www.walmart.com/ip/Lysol-All-Purpose-Cleaner-Spray-Mandarin-Ginger-Lily-32-oz-Brand-New-Day/554300688'
+                            'https://www.walmart.com/ip/Lysol-All-Purpose-Cleaner-Spray-Mandarin-Ginger-Lily-32-oz-Brand-New-Day/554300688',
+                            'https://www.walmart.com/ip/Great-Value-Fresh-Linen-Scent-Disinfectant-Spray-1-lb-3-oz/19400167',
+                            'https://www.walmart.com/ip/Great-Value-Citrus-Scent-Disinfectant-Spray-1-lb-3-oz/31955543',
+                            'https://www.walmart.com/ip/Great-Value-Lemon-Scent-Disinfectant-Spray-19-Oz/12511991',
+                            'https://www.walmart.com/ip/Great-Value-Morning-Meadow-Scent-Disinfectant-Spray-1-lb-3-oz/49932620',
+                            'https://www.walmart.com/ip/Great-Value-All-Purpose-Cleaner-with-Bleach-64-fl-oz/43888099',
+
                             ]
         self.baseurl = ''
         self.numberOfMinutes = 1

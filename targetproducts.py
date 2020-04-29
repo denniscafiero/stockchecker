@@ -21,7 +21,6 @@ class Target:
                             'https://www.target.com/p/disinfecting-wipes-lemon-scent-35-ct-up-up-8482/-/A-14694518',
                             'https://www.target.com/p/clorox-citrus-blend-disinfecting-wipes-crisp-lemon/-/A-79389928',
                             'https://www.target.com/p/lysol-disinfectant-crisp-linen-spray-19-oz/-/A-14214405',
-                            'https://www.target.com/p/disinfectant-spray-linen-scent-19-oz-up-38-up-8482/-/A-14695562',
                             ]
         self.baseurl = ''
         self.numberOfMinutes = 1
@@ -29,13 +28,6 @@ class Target:
         self.title = ""
 
     def readTarget(self):
-        # Asin Id is the product Id which
-        # needs to be provided by the user
-        # Asin = 'B0002LCZ6O'
-        # get products
-
-        # Asin = 'B07G8PW5Y3'
-        # url = "http://www.amazon.com/dp/" + Asin
         for i in self.productList:
             url = self.baseurl + i;
             print("Processing: " + i)
