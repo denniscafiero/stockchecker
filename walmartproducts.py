@@ -1,6 +1,7 @@
 #!C:\Python34 python
 
 from sendmail import SendMail
+import config
 
 #Importing packages
 
@@ -38,7 +39,6 @@ class Walmart:
                             'https://www.walmart.com/ip/Lysol-Disinfecting-Wipes-2-Lemon-Lime-1-Mango-Hibiscus-105ct-3X35ct-Brand-New-Day/854887879',
                             'https://www.walmart.com/ip/Lysol-Kitchen-Pro-Antibacterial-Disinfecting-Wipes-30ct-Kills-Germs/146817584',
                             'https://www.walmart.com/ip/Lysol-All-Purpose-Cleaner-Spray-Lemon-Breeze-Kills-Germs-2X32oz/483952655',
-                            'https://www.walmart.com/ip/Lysol-All-Purpose-Cleaner-Spray-Mandarin-Ginger-Lily-32-oz-Brand-New-Day/554300688',
                             'https://www.walmart.com/ip/Great-Value-Fresh-Linen-Scent-Disinfectant-Spray-1-lb-3-oz/19400167',
                             'https://www.walmart.com/ip/Great-Value-Citrus-Scent-Disinfectant-Spray-1-lb-3-oz/31955543',
                             'https://www.walmart.com/ip/Great-Value-Lemon-Scent-Disinfectant-Spray-19-Oz/12511991',
@@ -68,10 +68,15 @@ class Walmart:
 
     def checkWalmart(self, url):
         options = Options()
-        options.page_load_strategy = 'eager'
-        options.add_argument('--headless')
 
-        driver = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
+        if config.USE_VIRTUAL_DISPLAY:
+            options.add_argument('--no-sandbox')
+            driver = webdriver.Chrome(chrome_options=options)
+        else:
+            options.page_load_strategy = 'eager'
+            options.add_argument('--headless')
+            driver = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
+
         driver.get(url)
 
         wait = WebDriverWait(driver, 10)

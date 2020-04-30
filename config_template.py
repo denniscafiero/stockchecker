@@ -10,5 +10,6 @@ AMAZON = False  # Not ready for release
 
 #Set the time delay for checking default it every 15 minutes
 DELAY_IN_MINUTES = 15
+USE_VIRTUAL_DISPLAY = True
 
 

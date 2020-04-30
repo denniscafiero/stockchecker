@@ -1,4 +1,3 @@
-
 # Python script for Amazon product availability checker
 # importing libraries
 
@@ -7,10 +6,12 @@ from walmartproducts import Walmart
 from bjsproducts import Bjs
 from costcoproducts import Costco
 from amazonproducts import Amazon
+from pyvirtualdisplay import Display
 
 import time
 import schedule
 import config
+
 
 # times after every 1 minute
 def job():
@@ -31,6 +32,11 @@ def job():
         bjs = Bjs()
         bjs.readBjs()
 
+
+if config.USE_VIRTUAL_DISPLAY:
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+    print("virtual display run")
 
 job()
 

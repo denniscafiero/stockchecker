@@ -1,6 +1,7 @@
 
 
 from sendmail import SendMail
+import config
 
 #Importing packages
 
@@ -41,10 +42,14 @@ class Costco:
 
     def checkCostco(self, url):
         options = Options()
-        options.page_load_strategy = 'eager'
-        #options.add_argument('--headless')
 
-        driver = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
+        if config.USE_VIRTUAL_DISPLAY:
+            options.add_argument('--no-sandbox')
+            driver = webdriver.Chrome(chrome_options=options)
+        else:
+            options.page_load_strategy = 'eager'
+            options.add_argument('--headless')
+            driver = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
         driver.get(url)
 
         wait = WebDriverWait(driver, 10)
