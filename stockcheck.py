@@ -27,32 +27,42 @@ def job():
         az.readAmazon()
     if config.TARGET:
         target = Target()
-        t = threading.Thread(name='Target Thread {}'.format(0), target=target.readTarget)
-        t.start()
-        time.sleep(1)
-        print(t.name + ' started')
-        thread_list.append(t)
+        if config.MULTI_THREAD:
+            t = threading.Thread(name='Target Thread {}'.format(0), target=target.readTarget)
+            t.start()
+            time.sleep(1)
+            print(t.name + ' started')
+            thread_list.append(t)
+        else:
+            target.readTarget()
 
     if config.WALMART:
         walmart = Walmart()
-        t = threading.Thread(name='Walmart Thread {}'.format(1), target=walmart.readWalmart)
-        t.start()
-        time.sleep(1)
-        print(t.name + ' started')
-        thread_list.append(t)
+        if config.MULTI_THREAD:
+            t = threading.Thread(name='Walmart Thread {}'.format(1), target=walmart.readWalmart)
+            t.start()
+            time.sleep(1)
+            print(t.name + ' started')
+            thread_list.append(t)
+        else:
+            walmart.readWalmart()
     if config.BJS:
         bjs = Bjs()
-        t = threading.Thread(name='BJs Thread {}'.format(2), target=bjs.readBjs)
-        t.start()
-        time.sleep(1)
-        print(t.name + ' started')
-        thread_list.append(t)
+        if config.MULTI_THREAD:
+            t = threading.Thread(name='BJs Thread {}'.format(2), target=bjs.readBjs)
+            t.start()
+            time.sleep(1)
+            print(t.name + ' started')
+            thread_list.append(t)
+        else:
+            bjs.readBjs()
 
-    #Wait for all threads to complete
-    for thread in thread_list:
-        thread.join()
+    #Wait for all threads to complete if multi thread
+    if config.MULTI_THREAD:
+        for thread in thread_list:
+            thread.join()
 
-    print('Thread and scraping complete')
+        print('Thread and scraping complete')
 
 
 if config.USE_VIRTUAL_DISPLAY:

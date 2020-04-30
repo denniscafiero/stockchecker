@@ -15,3 +15,6 @@ USE_VIRTUAL_DISPLAY = False
 #Below will run chrome browser in the background
 HEADLESS_MODE = True
 
+#Enable as true if you would like to un in a multithread mode
+MULTI_THREAD = True
+
