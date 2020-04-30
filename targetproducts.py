@@ -46,7 +46,8 @@ class Target:
             driver = webdriver.Chrome(chrome_options=options)
         else:
             options.page_load_strategy = 'eager'
-            options.add_argument('--headless')
+            if config.HEADLESS_MODE:
+                options.add_argument('--headless')
             driver = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
         driver.get(url)
 

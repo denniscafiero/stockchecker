@@ -11,10 +11,13 @@ from pyvirtualdisplay import Display
 import time
 import schedule
 import config
+import threading
 
 
 # times after every 1 minute
 def job():
+
+    thread_list = list()
     print("Tracking....")
     if config.COSTCO:
         costco = Costco()
@@ -24,13 +27,32 @@ def job():
         az.readAmazon()
     if config.TARGET:
         target = Target()
-        target.readTarget()
+        t = threading.Thread(name='Target Thread {}'.format(0), target=target.readTarget)
+        t.start()
+        time.sleep(1)
+        print(t.name + ' started')
+        thread_list.append(t)
+
     if config.WALMART:
         walmart = Walmart()
-        walmart.readWalmart()
+        t = threading.Thread(name='Walmart Thread {}'.format(1), target=walmart.readWalmart)
+        t.start()
+        time.sleep(1)
+        print(t.name + ' started')
+        thread_list.append(t)
     if config.BJS:
         bjs = Bjs()
-        bjs.readBjs()
+        t = threading.Thread(name='BJs Thread {}'.format(2), target=bjs.readBjs)
+        t.start()
+        time.sleep(1)
+        print(t.name + ' started')
+        thread_list.append(t)
+
+    #Wait for all threads to complete
+    for thread in thread_list:
+        thread.join()
+
+    print('Thread and scraping complete')
 
 
 if config.USE_VIRTUAL_DISPLAY:
